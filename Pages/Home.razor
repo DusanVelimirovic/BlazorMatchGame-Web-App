@@ -1,6 +1,8 @@
 ﻿@page "/"
 
-<PageTitle>Blazor Matching Game app</PageTitle>
+@using System.Timers
+
+<PageTitle>Animals Matching Game</PageTitle>
 
 <style>
  .container {
@@ -27,6 +29,12 @@
             </div>
         }
     </div>
+    <div class="row">
+        <h2>Matches found: @matchesFound</h2>
+    </div>
+    <div class="row">
+        <h2>Time: @timeDisplay</h2>
+    </div>
 </div>
 
 @code {
@@ -45,8 +53,17 @@
 
     List<string> shuffledAnimals = new List<string>();
 
+    int matchesFound = 0;
+
+    // Timer
+    Timer timer;
+    int tenthsOfSecondsElapsed = 0;
+    string timeDisplay;
+
     protected override void OnInitialized()
     {
+        timer = new Timer(100);
+        timer.Elapsed += Timer_Tick;
         SetUpGame();
     }
 
@@ -57,6 +74,9 @@
         shuffledAnimals = animalEmoji
         .OrderBy(item => random.Next())
         .ToList();
+
+        matchesFound = 0;
+        tenthsOfSecondsElapsed = 0;
     }
 
     string lastAnimalFound = string.Empty;
@@ -68,6 +88,9 @@
             // First selection of the pair. Remember it.
             lastAnimalFound = animal;
             lastDescription = animalDescription;
+
+            // Start timer
+            timer.Start();
         }
         else if ((lastAnimalFound == animal) && (animalDescription != lastDescription))
         {
@@ -77,6 +100,18 @@
             shuffledAnimals = shuffledAnimals
             .Select(a => a.Replace(animal, string.Empty))
             .ToList();
+
+            matchesFound++;
+            if (matchesFound == 8)
+            {
+                // Stop the timer and ask player to play again
+                timer.Stop();
+                timeDisplay += " - Play Again?";
+
+                SetUpGame();
+            }
+
+
         }
         else
         {
@@ -84,6 +119,17 @@
             // Reset selection.
             lastAnimalFound = string.Empty;
         }
+    }
+
+    private void Timer_Tick(Object source, ElapsedEventArgs e)
+    {
+        InvokeAsync(() =>
+        {
+            tenthsOfSecondsElapsed++;
+            timeDisplay = (tenthsOfSecondsElapsed / 10F)
+     .ToString("0.0s");
+            StateHasChanged();
+        });
     }
 
 
