@@ -57,7 +57,7 @@
         <h2>Time: @timeDisplay</h2>
     </div>
 </div>
-
+<!-- If showPlayAgainPopup = true, then modal will be display -->
 @if (showPlayAgainPopup)
 {
     <div class="modal" tabindex="-1" role="dialog" style="display: block;">
@@ -70,6 +70,7 @@
 }
 
 @code {
+    // Availables animals emoji
     List<string> animalEmoji = new List<string>()
     {
         "🐶", // Dog
@@ -92,12 +93,22 @@
 
     List<string> shuffledAnimals = new List<string>();
 
+    // Store found animals matches
     int matchesFound = 0;
 
+    // Instantiate timer object global available
     Timer timer;
+
+    // An integer to store elapsed time in tenths of a second
     int tenthsOfSecondsElapsed = 0;
+
+    // An string to store elapsed time
     string timeDisplay;
+
+    // A boolean flag to control the visibility of the "Play Again" confirmation modal
     bool showPlayAgainPopup = false;
+
+    // A boolean flag to control the visibility of the last game state modal
     bool showLastGameState = false;
 
     protected override void OnInitialized()
@@ -109,6 +120,7 @@
 
     private async Task SetUpGame()
     {
+        // Randomly select animal emoji
         Random random = new Random();
         var uniqueAnimals = animalEmoji
             .OrderBy(item => random.Next())
@@ -118,6 +130,7 @@
 
         var shuffledPairs = uniqueAnimals.SelectMany(animal => new[] { animal, animal }).ToList();
 
+        // Push animals emoji pairs in the List
         shuffledAnimals = shuffledPairs
             .OrderBy(item => random.Next())
             .ToList();
@@ -129,24 +142,38 @@
         showLastGameState = false;
     }
 
+    // Main game logic
+
     string lastAnimalFound = string.Empty;
     string lastDescription = string.Empty;
     private async Task ButtonClick(string animal, string animalDescription)
     {
+        // Player click first animal
+        // Timer start
         if (lastAnimalFound == string.Empty)
         {
             lastAnimalFound = animal;
             lastDescription = animalDescription;
             timer.Start();
         }
+        // Player clicks the second animal
+        // Check if it matches the first animal
         else if ((lastAnimalFound == animal) && (animalDescription != lastDescription))
         {
+            // If the second animal matches the first one
+            // Clear the stored information about the first animal
             lastAnimalFound = string.Empty;
+
+            // Remove the matched animals from the game board
+            // by replacing them with an empty string
             shuffledAnimals = shuffledAnimals
                 .Select(a => a.Replace(animal, string.Empty))
                 .ToList();
 
+            // Increment the number of matches found
             matchesFound++;
+
+            // If all matches are found (8 matches in total)
             if (matchesFound == 8)
             {
                 timer.Stop();
@@ -154,14 +181,19 @@
                 showPlayAgainPopup = true;
             }
         }
+
+        // If the second animal doesn't match the first one
         else
         {
+            // Clear the stored information about the first animal
             lastAnimalFound = string.Empty;
         }
 
+        // Update the UI asynchronously to reflect the changes
         await InvokeAsync(StateHasChanged);
     }
 
+    // This method is called each time the timer ticks
     private void Timer_Tick(Object source, ElapsedEventArgs e)
     {
         InvokeAsync(() =>
@@ -183,7 +215,7 @@
         {
             showPlayAgainPopup = false;
         }
-
+        //  Ntify the UI that the state has changed and needs to be re-rendered
         await InvokeAsync(StateHasChanged);
     }
 }
