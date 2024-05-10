@@ -1,0 +1,50 @@
+ Animal Match Game
+
+This is Animal Match Game.
+
+Requirements:
+1.Program need to display 8 unique animals pairs from the list.
+2.Program need to allow user to find same animals,
+3.Program need to keep track of how much animals pairs player find,
+4.Program need to keep track of total time player spend trying to find animals pair
+5.Program need to allow user to play again.
+
+
+***************  Make a game better requirements *****************
+
+Improvement number 1
+
+This is a improvemenet of requirements number 1.
+In a current Animals mathing Game we need to add different animals Emoji pairs so the same ones 
+don’t show up each time. 
+
+Key requirements:
+	1. In the begining of every new game program need do display random animals (random animals pairs);
+	2. We have 16 field (means 8 animal pairs),
+	3. We need more then 8 animals pairs in total.
+
+Program need to store n-th animals Emoji in the List.
+
+Program need to randomly display 8 animals pairs.
+
+Improvement number 2 - End game message
+
+This is a improvement of step 2.
+
+Requirement: 1.Program need to ask player to play again after the game is finished.
+	     2.Program need to pop up new window with a text: "Do you want to play again" and two actions buttons "Yes" and "No".  
+	     2.1.If user press "Yes" then game starts again.
+             2.2.If user press "No" then a game don't start again and program display last game state.
+	     2.2.1.Last game state need to include new button "Play again". That button need to exist only when player finish the game and decide to not play again (He press "No button from a new window").	
+
+	 
+
+
+
+
+
+
+
+
+
+
