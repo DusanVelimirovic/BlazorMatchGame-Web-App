@@ -1,8 +1,8 @@
- Animal Match Game
+Animal Match Game
 
 This is Animal Match Game.
 
-Requirements:
+Problem analysis (Requirements):
 1.Program need to display 8 unique animals pairs from the list.
 2.Program need to allow user to find same animals,
 3.Program need to keep track of how much animals pairs player find,
@@ -37,14 +37,26 @@ Requirement: 1.Program need to ask player to play again after the game is finish
              2.2.If user press "No" then a game don't start again and program display last game state.
 	     2.2.1.Last game state need to include new button "Play again". That button need to exist only when player finish the game and decide to not play again (He press "No button from a new window").	
 
-	 
 
+Improvement number 2
 
+This is a improvement of requirements number 2
 
+Idea is that our game have a feature where our program can keep track of player best time.
+For example, Player play the game and complete the game for some period of time (name that time for example current time).
+That time can be slower or faster then best time. If current time is slower then best time then user need to get message "Come on man you can do much better!!!!". 
+Else, if current time is faster then best time, then player need to get message like "Oh man, you are faster then thunderbolt".
 
-
-
-
-
-
-
+Problem analysis (Requirements):
+1.Program need to be able to know when player play the game for the first time 
+	For example, when player play the game for the first time that time is his best time. Every other time when player play the game that is current time
+2.Program need to make decision about new best time.
+	For example, program need to make evaluation between current time and best time in the terms of slower and faster.
+	If current time is faster then best time then current time need to become the best time.
+	Else, if current time is slower then best time, then the best time is steal the best time.
+3.Program need to be able to store somewhere best time and access that value for comparing with current time.
+4.Program need to be able to, based on evaluation to display predefined message:
+	If current time is slower then best time then user need to get message "Come on man you can do much better!!!!". 
+	Else, if current time is faster then best time, then player need to get message like "Oh man, you are faster then thunderbolt".
+5.Program need to be able to every time when player finish the game to display if following order: current time, best time and the message as a result of evaluation.
+6. 
