@@ -12,9 +12,7 @@ Problem analysis (Requirements):
 
 ***************  Make a game better requirements *****************
 
-Improvement number 1
-
-This is a improvemenet of requirements number 1.
+Improvement no 1 - Random animals pair
 In a current Animals mathing Game we need to add different animals Emoji pairs so the same ones 
 don’t show up each time. 
 
@@ -38,18 +36,16 @@ Requirement: 1.Program need to ask player to play again after the game is finish
 	     2.2.1.Last game state need to include new button "Play again". That button need to exist only when player finish the game and decide to not play again (He press "No button from a new window").	
 
 
-Improvement number 2
+Improvement number 2 - Keep track of the player best time
 
-This is a improvement of requirements number 2
-
-Idea is that our game have a feature where our program can keep track of player best time.
+Idea is that our game have a feature to keep track of player best time and display best time every time when player start a new game.
 For example, Player play the game and complete the game for some period of time (name that time for example current time).
 That time can be slower or faster then best time. If current time is slower then best time then user need to get message "Come on man you can do much better!!!!". 
 Else, if current time is faster then best time, then player need to get message like "Oh man, you are faster then thunderbolt".
 
 Problem analysis (Requirements):
 1.Program need to be able to know when player play the game for the first time 
-	For example, when player play the game for the first time that time is his best time. Every other time when player play the game that is current time
+	For example, when player play the game for the first time that time is his best time. Every other time when player play the game that is current time.
 2.Program need to make decision about new best time.
 	For example, program need to make evaluation between current time and best time in the terms of slower and faster.
 	If current time is faster then best time then current time need to become the best time.
@@ -59,4 +55,3 @@ Problem analysis (Requirements):
 	If current time is slower then best time then user need to get message "Come on man you can do much better!!!!". 
 	Else, if current time is faster then best time, then player need to get message like "Oh man, you are faster then thunderbolt".
 5.Program need to be able to every time when player finish the game to display if following order: current time, best time and the message as a result of evaluation.
-6. 
