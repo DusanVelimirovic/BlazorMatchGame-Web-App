@@ -54,4 +54,4 @@ Problem analysis (Requirements):
 4.Program need to be able to, based on evaluation to display predefined message:
 	If current time is slower then best time then user need to get message "Come on man you can do much better!!!!". 
 	Else, if current time is faster then best time, then player need to get message like "Oh man, you are faster then thunderbolt".
-5.Program need to be able to every time when player finish the game to display if following order: current time, best time and the message as a result of evaluation.
+5.Program need to be able to every time when player finish the game to display if following order: current time, best time (current time and a best time need to be in the same format) and the message as a result of evaluation.
