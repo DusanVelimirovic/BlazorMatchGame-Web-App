@@ -56,6 +56,9 @@
     <div class="row">
         <h2>Time: @timeDisplay</h2>
     </div>
+    <div class="row">
+        <h2>Best Time: @bestTimeInSeconds.ToString("0.0s")</h2>
+    </div>
 </div>
 <!-- If showPlayAgainPopup = true, then modal will be display -->
 @if (showPlayAgainPopup)
@@ -104,6 +107,9 @@
 
     // An string to store elapsed time
     string timeDisplay;
+
+    // Variable to store the best time achieved by the player
+    float bestTimeInSeconds = float.MaxValue;
 
     // A boolean flag to control the visibility of the "Play Again" confirmation modal
     bool showPlayAgainPopup = false;
@@ -174,10 +180,15 @@
             matchesFound++;
 
             // If all matches are found (8 matches in total)
+            // When the player completes the game
             if (matchesFound == 8)
             {
                 timer.Stop();
-                timeDisplay += " - Play Again?";
+                if (tenthsOfSecondsElapsed / 10F < bestTimeInSeconds)
+                {
+                    bestTimeInSeconds = tenthsOfSecondsElapsed / 10F;
+                }
+                timeDisplay += $" - Best Time: {bestTimeInSeconds.ToString("0.0s")} - Play Again?";
                 showPlayAgainPopup = true;
             }
         }
