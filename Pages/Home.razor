@@ -57,7 +57,14 @@
         <h2>Time: @timeDisplay</h2>
     </div>
     <div class="row">
-        <h2>Best Time: @bestTimeInSeconds.ToString("0.0s")</h2>
+        @if (isFirstGame)
+        {
+            <h2>First Game!</h2>
+        }
+        else
+        {
+            <h2>Best Time: @bestTimeInSeconds.ToString("0.0s")</h2>
+        }
     </div>
 </div>
 <!-- If showPlayAgainPopup = true, then modal will be display -->
@@ -65,7 +72,14 @@
 {
     <div class="modal" tabindex="-1" role="dialog" style="display: block;">
         <div class="modal-content">
-            <h2>Play Again?</h2>
+            @if (showFasterThanThunderboltModal)
+            {
+                <h2>Oh man you are faster than the thunderbolt!!</h2>
+            }
+            else
+            {
+                <h2>Keep trying!!</h2>
+            }
             <button @onclick="@(async () => await PlayAgain(true))" class="btn btn-primary">Yes</button>
             <button @onclick="@(async () => await PlayAgain(false))" class="btn btn-secondary">No</button>
         </div>
@@ -95,6 +109,11 @@
     };
 
     List<string> shuffledAnimals = new List<string>();
+
+    // Variable to control the visibility of the modal for "faster than thunderbolt" message
+    bool showFasterThanThunderboltModal = false;
+
+    bool isFirstGame = true;
 
     // Store found animals matches
     int matchesFound = 0;
@@ -184,14 +203,23 @@
             if (matchesFound == 8)
             {
                 timer.Stop();
+
                 if (tenthsOfSecondsElapsed / 10F < bestTimeInSeconds)
                 {
                     bestTimeInSeconds = tenthsOfSecondsElapsed / 10F;
+                    showFasterThanThunderboltModal = true;
                 }
-                timeDisplay += $" - Best Time: {bestTimeInSeconds.ToString("0.0s")} - Play Again?";
+                else
+                {
+                    showFasterThanThunderboltModal = false;
+                }
+
+                isFirstGame = false;
                 showPlayAgainPopup = true;
+
             }
         }
+   
 
         // If the second animal doesn't match the first one
         else
