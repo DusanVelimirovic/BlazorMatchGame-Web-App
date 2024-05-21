@@ -55,3 +55,28 @@ Problem analysis (Requirements):
 	If current time is slower then best time then user need to get message "Come on man you can do much better!!!!". 
 	Else, if current time is faster then best time, then player need to get message like "Oh man, you are faster then thunderbolt".
 5.Program need to be able to every time when player finish the game to display if following order: current time, best time (current time and a best time need to be in the same format) and the message as a result of evaluation.
+
+Improvement 2 - Game modes
+
+This feature should allow player to before the game has been started choose in with mode he want to play. 
+For this feature we need a two modes: "Classic mode" - where players can see all animals, and an "Advanced Mode" - where animals are hidden until a match is attempted.
+
+Problem analysis (Requirements):
+1.When player load a game program need to pop up modal with question in with mode player want to play: "Classic mode" - where players can see all animals, and an "Advanced Mode" - where animals are hidden until a match is attempted,
+2.If player choose to play in a "Classic mode" then game logic can remain the same like now,
+3.If player choose to play in a "Advanced mode" then game logic need to adjust in with the following requirements:
+Let's break down each step and discuss its implementation:
+	1. Initial Hidden State: All animal icons are hidden initially, represented by a placeholder like a question mark (❓).
+	2. Reveal on Click first time: When the player clicks a button, the animal behind that button is temporarily revealed for about 3 seconds and then reverts 	   to the previous state - This requires setting a timer to revert the animal back to the placeholder after 3 seconds unless another button is clicked in 
+           the meantime.
+	3.Reveal on Click second time: When the player clicks another button, the animal behind that button is revealed and the program compares it with the 	 
+          previously revealed animal. If the animals are the same, proceed to step 4. If the animals are not the same, proceed to step 5.
+	4. Matched Animals Disappear: Once a match is found, those animals disappear from the screen - This can be achieved by removing the matched animals from 
+           the list or marking them as matched and updating the UI accordingly.
+	5. Second Selected Animal Returns to Previous State: If the animals are not the same we can identify two possible scenarios:
+		1.If second animal has been clicked after 3 second period has been finished (first animal return to a previous state) then only second animal need 		  to be return to a previous state,
+		2.If a second animal before 3 second period ends then both animals need to be return to a previous state.
+	6. Timer and Score Display: The timer and match count should be displayed as in the classic mode.
+
+
+
