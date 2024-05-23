@@ -62,10 +62,9 @@ This feature should allow player to before the game has been started choose in w
 For this feature we need a two modes: "Classic mode" - where players can see all animals, and an "Advanced Mode" - where animals are hidden until a match is attempted.
 
 Problem analysis (Requirements):
-1.When player load a game program need to pop up modal with question in with mode player want to play: "Classic mode" - where players can see all animals, and an "Advanced Mode" - where animals are hidden until a match is attempted,
+1.When player load a game program need to pop up modal with question in witch mode player want to play: "Classic mode" - where player can see all animals, and or "Advanced Mode" - where animals are hidden until a match is attempted,
 2.If player choose to play in a "Classic mode" then game logic can remain the same like now,
-3.If player choose to play in a "Advanced mode" then game logic need to adjust in with the following requirements:
-Let's break down each step and discuss its implementation:
+3.If player choose to play in a "Advanced mode" then game logic needs to adjusted with the following requirements:
 	1. Initial Hidden State: All animal icons are hidden initially, represented by a placeholder like a question mark (❓).
 	2. Reveal on Click first time: When the player clicks a button, the animal behind that button is temporarily revealed for about 3 seconds and then reverts 	   to the previous state - This requires setting a timer to revert the animal back to the placeholder after 3 seconds unless another button is clicked in 
            the meantime.
