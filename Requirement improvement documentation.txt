@@ -84,11 +84,16 @@ This is improvement of end of the game options. Player should be able to, when h
 
 Problem analysis (Requirements):
 1.When a player finish a game program need to display a modal with following structure:
-	1.Repeat a game - that means that player wants to play again and he wants to play again in a current mode,
-	2.Switch mode - that means that player wants to play again but in the second mode,
-	3.Exist - that means that player not want's to play again,
-	4.Player current time - this is a time achieved from his last game,
-	5.Player best time - this is player best time,
-	6.Apropriate message - this is already developed
+	1.Repeat a game (this is a button) - that means that player wants to play again and he wants to play again in a current mode
+		This means that game needs to stay in a current mode.
+	2.Switch mode (this is button) - that means that player wants to play again but in the second mode
+		This means that in that case game need to switch in other mode.
+	3.Exit (this is button) - that means that player doesn't want to play again
+		We will work on this in a next improvement.
+	4.Player current time (text) - this is a time achieved from his last game,
+	5.Player best time (text) - this is player best time,
+	6.Apropriate message (text) - this is already developed
+
+Improvement 4 - End of the game exit button
 
 
