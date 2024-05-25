@@ -36,6 +36,18 @@
     }
 </style>
 
+<!-- Modal for selecting game mode -->
+@if (!gameStarted)
+{
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-content">
+            <h2>Select Game Mode</h2>
+            <button @onclick="@(async () => await StartGame(true))" class="btn btn-primary">Classic Mode</button>
+            <button @onclick="@(async () => await StartGame(false))" class="btn btn-secondary">Advanced Mode</button>
+        </div>
+    </div>
+}
+
 <div class="container">
     <div class="row">
         @for (var animalNumber = 0; animalNumber < shuffledAnimals.Count; animalNumber++)
@@ -67,6 +79,9 @@
         }
     </div>
 </div>
+
+
+
 <!-- If showPlayAgainPopup = true, then modal will be display -->
 @if (showPlayAgainPopup)
 {
@@ -110,6 +125,9 @@
 
     List<string> shuffledAnimals = new List<string>();
 
+    bool gameStarted = false;
+    string containerDisplayStyle = "display: none;"; // Initially hide the game container
+
     // Variable to control the visibility of the modal for "faster than thunderbolt" message
     bool showFasterThanThunderboltModal = false;
 
@@ -135,6 +153,27 @@
 
     // A boolean flag to control the visibility of the last game state modal
     bool showLastGameState = false;
+
+    // Method to start the game based on the selected mode
+    private async Task StartGame(bool isClassicMode)
+    {
+        gameStarted = true; // Set gameStarted flag to true
+        containerDisplayStyle = "display: block;"; // Show the game container
+
+        // Setup the game based on the selected mode
+        if (isClassicMode)
+        {
+            // Start the game in Classic Mode
+            await SetUpGame();
+        }
+        else
+        {
+            // Start the game in Advanced Mode
+            // Implement logic for Advanced Mode
+            // For now, let's just start the game in Classic Mode
+            await SetUpGame();
+        }
+    }
 
     protected override void OnInitialized()
     {
