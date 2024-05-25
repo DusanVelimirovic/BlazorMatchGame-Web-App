@@ -66,10 +66,11 @@ Problem analysis (Requirements):
 2.If player choose to play in a "Classic mode" then game logic can remain the same like now,
 3.If player choose to play in a "Advanced mode" then game logic needs to adjusted with the following requirements:
 	1. Initial Hidden State: All animal icons are hidden initially, represented by a placeholder like a question mark (❓).
-	2. Reveal on Click first time: When the player clicks a button, the animal behind that button is temporarily revealed for about 3 seconds and then reverts 	   to the previous state - This requires setting a timer to revert the animal back to the placeholder after 3 seconds unless another button is clicked in 
-           the meantime.
-	3.Reveal on Click second time: When the player clicks another button, the animal behind that button is revealed and the program compares it with the 	 
-          previously revealed animal. If the animals are the same, proceed to step 4. If the animals are not the same, proceed to step 5.
+	2. Reveal on Click first squere: When the player clicks a button, the animal behind that button is temporarily revealed for about 3 seconds and then 	 
+                     reverts 	   to the previous state - This requires setting a timer to revert the animal back to the placeholder after 3 seconds unless 
+                     another button is clicked in the meantime.
+	3.Reveal on Click second squere: When the player clicks another button, the animal behind that button is revealed and the program compares it with the 	 
+          previously revealed animal. Program not allow to user to click any other squere before program finishes evaluation. If the animals are the same, proceed to step 4. If the animals are not the same, proceed to step 5.
 	4. Matched Animals Disappear: Once a match is found, those animals disappear from the screen - This can be achieved by removing the matched animals from 
            the list or marking them as matched and updating the UI accordingly.
 	5. Second Selected Animal Returns to Previous State: If the animals are not the same we can identify two possible scenarios:
