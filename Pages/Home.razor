@@ -1,9 +1,10 @@
 ﻿@page "/"
 
-@using System.Timers
+@using System.Timers 
 
 <PageTitle>Animals Matching Game</PageTitle>
 
+<!-- CSS Styles -->
 <style>
     .container {
         width: 400px;
@@ -48,7 +49,9 @@
     </div>
 }
 
+<!-- Game board -->
 <div class="container">
+    <!-- Dispplay button for every animal -->
     <div class="row">
         @for (var animalNumber = 0; animalNumber < shuffledAnimals.Count; animalNumber++)
         {
@@ -62,6 +65,7 @@
             </div>
         }
     </div>
+    <!-- Display game statistic -->
     <div class="row">
         <h2>Matches found: @matchesFound</h2>
     </div>
@@ -82,7 +86,7 @@
 
 
 
-<!-- If showPlayAgainPopup = true, then modal will be display -->
+<!-- Play again modal-->
 @if (showPlayAgainPopup)
 {
     <div class="modal" tabindex="-1" role="dialog" style="display: block;">
@@ -102,7 +106,8 @@
 }
 
 @code {
-    // Availables animals emoji
+
+    // Store available animals emoji
     List<string> animalEmoji = new List<string>()
     {
         "🐶", // Dog
@@ -123,6 +128,7 @@
         "🦄", // Unicorn
     };
 
+    // Design to contain unique list of animals in the board
     List<string> shuffledAnimals = new List<string>();
 
     bool gameStarted = false;
