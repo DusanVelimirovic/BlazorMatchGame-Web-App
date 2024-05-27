@@ -90,6 +90,9 @@ Problem analysis (Requirements):
 	5.Player best time (text) - this is player best time,
 	6.Apropriate message (text) - this is already developed
 
+Design ideas:
+1.We need to have a different method for set up game based on classic or advanced modes.
+
 Improvement 4 - End of the game exit button
 
 
