@@ -152,10 +152,10 @@
     string timeDisplay;
 
     // Variable to store the best time achieved by the player
-    float bestTimeInSeconds = float.MaxValue;
+    float bestTimeInSeconds = float.MaxValue; // Initial value
 
     // A boolean flag to control the visibility of the "Play Again" confirmation modal
-    bool showPlayAgainPopup = false;
+    bool showPlayAgainPopup = false; // Initial value
 
     // A boolean flag to control the visibility of the last game state modal
     bool showLastGameState = false;
@@ -181,13 +181,15 @@
         }
     }
 
+    // Perform necessary sets up the timer and initializes the game state when the component is first initialized
     protected override void OnInitialized()
     {
-        timer = new Timer(100);
-        timer.Elapsed += Timer_Tick;
+        timer = new Timer(100); // A Timer object is created with an interval of 100 milliseconds (0.1 seconds)
+        timer.Elapsed += Timer_Tick; // every 100 milliseconds, the Timer_Tick method will be called to update the elapsed time
         SetUpGame().Wait(); // Wait for SetUpGame to finish initializing
     }
 
+    // Method responsible for set up a game board
     private async Task SetUpGame()
     {
         // Randomly select animal emoji
@@ -198,6 +200,7 @@
             .Take(8)
             .ToList();
 
+        // Build shiffled random animals emoji list
         var shuffledPairs = uniqueAnimals.SelectMany(animal => new[] { animal, animal }).ToList();
 
         // Push animals emoji pairs in the List
@@ -205,6 +208,7 @@
             .OrderBy(item => random.Next())
             .ToList();
 
+        // Set up initial statistic
         matchesFound = 0;
         tenthsOfSecondsElapsed = 0;
         timeDisplay = "0.0s";
