@@ -128,27 +128,33 @@
         "🦄", // Unicorn
     };
 
-    // Design to contain unique list of animals in the board
-    List<string> shuffledAnimals = new List<string>();
+    // Variables container
 
+    // Responsable to hold value for controling of display game selecting modal
     bool gameStarted = false; // Initial state
-    string containerDisplayStyle = "display: none;"; // Initially hide the game container
+
+    // Responsable to hold value for controling of game board display
+    string containerDisplayStyle = "display: none;"; 
+
+    // Contain unique list of animals in the board
+    List<string> shuffledAnimals = new List<string>();
 
     // Variable to control the visibility of the modal for "faster than thunderbolt" message
     bool showFasterThanThunderboltModal = false;
 
+    // Responsable to hold value to decide if player need to see just message (when he plays the game for the first time) or best time achieved
     bool isFirstGame = true;
 
     // Store found animals matches
     int matchesFound = 0;
 
-    // Instantiate timer object global available
+    // Instantiate timer object - global available
     Timer timer;
 
     // An integer to store elapsed time in tenths of a second
     int tenthsOfSecondsElapsed = 0;
 
-    // An string to store elapsed time
+    // An string to store and display player elapsed time
     string timeDisplay;
 
     // Variable to store the best time achieved by the player
@@ -160,7 +166,7 @@
     // A boolean flag to control the visibility of the last game state modal
     bool showLastGameState = false;
 
-    // Method to start the game based on the selected mode
+    // Main method to start the game based on the selected mode
     private async Task StartGame(bool isClassicMode)
     {
         gameStarted = true; // Set gameStarted flag to true
@@ -192,7 +198,7 @@
     // Method responsible for set up a game board
     private async Task SetUpGame()
     {
-        // Randomly select animal emoji
+        // Randomly select 8 random animal emoji
         Random random = new Random();
         var uniqueAnimals = animalEmoji
             .OrderBy(item => random.Next())
@@ -200,7 +206,7 @@
             .Take(8)
             .ToList();
 
-        // Build shiffled random animals emoji list
+        // Build duplicated animal emoji (animals pairs) list from uniqueAnimals generated in previous step
         var shuffledPairs = uniqueAnimals.SelectMany(animal => new[] { animal, animal }).ToList();
 
         // Push animals emoji pairs in the List
@@ -208,7 +214,7 @@
             .OrderBy(item => random.Next())
             .ToList();
 
-        // Set up initial statistic
+        // Set up initial game statistic
         matchesFound = 0;
         tenthsOfSecondsElapsed = 0;
         timeDisplay = "0.0s";
