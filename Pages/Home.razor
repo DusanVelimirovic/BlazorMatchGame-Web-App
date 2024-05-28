@@ -37,7 +37,7 @@
     }
 </style>
 
-<!-- Modal for selecting game mode -->
+<!-- Modal for selecting game mode initial state --> gameStarted = false -->
 @if (!gameStarted)
 {
     <div class="modal" tabindex="-1" role="dialog" style="display: block;">
@@ -131,7 +131,7 @@
     // Design to contain unique list of animals in the board
     List<string> shuffledAnimals = new List<string>();
 
-    bool gameStarted = false;
+    bool gameStarted = false; // Initial state
     string containerDisplayStyle = "display: none;"; // Initially hide the game container
 
     // Variable to control the visibility of the modal for "faster than thunderbolt" message
