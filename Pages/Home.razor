@@ -223,7 +223,7 @@
     }
 
     // Main game logic
-
+    // Responsible for the processes the player's actions, checks for matches, updates the game state, and handles the game timer
     string lastAnimalFound = string.Empty;
     string lastDescription = string.Empty;
     private async Task ButtonClick(string animal, string animalDescription)
@@ -244,8 +244,7 @@
             // Clear the stored information about the first animal
             lastAnimalFound = string.Empty;
 
-            // Remove the matched animals from the game board
-            // by replacing them with an empty string
+            // Remove the matched animals from the game board by replacing them with an empty string
             shuffledAnimals = shuffledAnimals
                 .Select(a => a.Replace(animal, string.Empty))
                 .ToList();
@@ -258,18 +257,18 @@
             if (matchesFound == 8)
             {
                 timer.Stop();
-
+                // Compare current time with a best time     
                 if (tenthsOfSecondsElapsed / 10F < bestTimeInSeconds)
                 {
-                    bestTimeInSeconds = tenthsOfSecondsElapsed / 10F;
-                    showFasterThanThunderboltModal = true;
+                    bestTimeInSeconds = tenthsOfSecondsElapsed / 10F; // Update best time
+                    showFasterThanThunderboltModal = true; // Show positive modal
                 }
                 else
                 {
                     showFasterThanThunderboltModal = false;
                 }
 
-                isFirstGame = false;
+                isFirstGame = false; // Update first game state
                 showPlayAgainPopup = true;
 
             }
