@@ -93,7 +93,7 @@ Problem analysis (Requirements):
 Design ideas:
 1.We need to have a different method for set up game based on classic or advanced modes.
 2.It's ok to have one startGame mode -> responsible for calling one of two different set up game modes,
-3.Main game logic also need to be the same.
+3.Main game logic method need to be a different for two available modes.
 
 Improvement 4 - End of the game exit button
 
